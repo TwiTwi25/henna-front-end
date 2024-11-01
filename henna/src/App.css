@@ -1,0 +1,64 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+header.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+  background-image: url('images/space.jpg');
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.artist-section {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.artist {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input {
+  width: 120px;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #5500ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0e12fb;
+}
+
+button.delete-artist {
+  background-color: #dc3545;
+}
+
+button.delete-artist:hover {
+  background-color: #c82333;
+}
