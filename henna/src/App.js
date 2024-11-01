@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Components/Header'; // Importing the Header component
 import Artist from './Components/Artist'; // Importing the Artist component
 import AddArtistButton from './Components/AddArtistButton'; // Importing the AddArtistButton component
+import './App.css'; //Importing stylesheet
 
 function App() {
   const [artists, setArtists] = useState([]);
