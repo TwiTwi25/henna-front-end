@@ -1,0 +1,95 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+header.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+
+    background-image: url('images/space.jpg');
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+h1 {
+    color: white;
+    font-size: 20;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.artist {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input.tickets-input {
+    width: 120px;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+input.tips-input {
+    width: 120px;
+    padding: 5px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+button.delete-artist {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#add-artist {
+    display: block;
+    /* Make the button a block element */
+    margin: 0 auto;
+    /* Center the button horizontally */
+    text-align: center;
+    /* Center the text inside the button */
+}
+
+button.delete-artist:hover {
+    background-color: #c82333;
+}
+
+button#add-artist {
+    background-color: #5500ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button#add-artist:hover {
+    background-color: #0e12fb;
+}
