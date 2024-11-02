@@ -28,6 +28,50 @@ h1 {
   text-align: center;
 }
 
+.add-artist {
+  display: flex;
+  flex-direction: column;
+  /* Stack items vertically */
+  align-items: center;
+  /* Center the input and button horizontally */
+  margin-top: 20px;
+  /* Adds space above the form */
+}
+
+.add-artist input {
+  width: 200px;
+  /* Set width of the input field */
+  padding: 10px;
+  margin-bottom: 15px;
+  /* Add space between the input and button */
+  font-size: 1rem;
+}
+
+.add-artist button {
+  background-color: #5500ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.artist-buttons {
+  display: flex;
+  flex-direction: column;
+  /* Stack the buttons vertically */
+  align-items: center;
+  /* Center the buttons horizontally */
+  margin-top: 10px;
+  /* Add space above the button container */
+}
+
+.add-artist button:hover {
+  background-color: #0e12fb;
+}
+
 .artist {
   padding: 10px;
   margin: 10px 0;
@@ -60,5 +104,57 @@ button.delete-artist {
 }
 
 button.delete-artist:hover {
+  background-color: #851823;
+}
+
+.submit-button,
+.delete-button {
+  background-color: #5500ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100px;
+  /* Fixed width for consistency */
+  margin: 10px 0;
+  /* Add space between the buttons */
+}
+
+.submit-button:hover {
+  background-color: #0e12fb;
+}
+
+.delete-button {
+  background-color: #dc3545;
+}
+
+.delete-button:hover {
   background-color: #c82333;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  /* Center the items horizontally */
+  margin: 20px 0;
+}
+
+.tab-container button {
+  margin: 0 10px;
+  /* Horizontal margin between buttons */
+  padding: 10px 15px;
+  /* Adjust padding for better button size */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-container button.active {
+  background-color: #0056b3;
+  /* Darker color for active tab */
 }

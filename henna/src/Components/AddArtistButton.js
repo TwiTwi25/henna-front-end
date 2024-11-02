@@ -14,12 +14,14 @@ const AddArtistButton = ({ addArtist }) => {
 
     return (
         <div className="add-artist">
+            {/* Input field for artist name */}
             <input
                 type="text"
                 value={artistName}
                 onChange={(e) => setArtistName(e.target.value)}
                 placeholder="Enter artist's name"
             />
+            {/* Button below the input */}
             <button onClick={handleAddArtist}>Add Artist</button>
         </div>
     );

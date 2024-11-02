@@ -1,0 +1,83 @@
+.booth-babe-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center items horizontally */
+    margin: 20px 0;
+    /* Spacing around the component */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    /* Stack label and input vertically */
+    align-items: center;
+    /* Center input fields */
+    margin: 10px 0;
+    /* Space between input groups */
+    width: 100%;
+    /* Full width for input group */
+    max-width: 300px;
+    /* Max width for consistency */
+}
+
+.artist-input {
+    padding: 10px;
+    margin: 5px 0;
+    /* Space above and below the input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    /* Full width for inputs */
+    box-sizing: border-box;
+    /* Include padding in width calculation */
+}
+
+.add-babe-button {
+    padding: 10px 15px;
+    background-color: #5500ff;
+    /* Button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    /* Space above the button */
+    width: 100%;
+    /* Full width for button */
+    max-width: 300px;
+    /* Max width to match input fields */
+    text-align: center;
+    /* Center text in the button */
+}
+
+.add-babe-button:hover {
+    background-color: #218838;
+    /* Darker color on hover */
+}
+
+.babe-list {
+    display: flex;
+    flex-direction: column;
+    /* Align list items vertically */
+    margin-top: 20px;
+    /* Space above the list */
+    width: 100%;
+    /* Full width for the babe list */
+    max-width: 300px;
+    /* Ensure list items align with inputs */
+    align-items: center;
+    /* Center the babe list */
+}
+
+.babe-list {
+    justify-content: center;
+    /* Center items horizontally */
+    align-items: center;
+    /* Center items vertically if using flex */
+}
+
+.input-group {
+    justify-content: center;
+    /* Center label and input horizontally */
+}
