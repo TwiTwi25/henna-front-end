@@ -13,13 +13,10 @@ const BoothBabe = () => {
             return;
         }
 
-        // Create a new babe object
         const newBabe = { name: babeName, startingTicket: '', endingTicket: '' };
         setBabes([...babes, newBabe]);
         setBabeName(''); // Clear name input after adding
-
-        // Set current babe index to the new babe's index
-        setCurrentBabeIndex(babes.length); // Length will give the new index
+        setCurrentBabeIndex(babes.length); // Set current babe index to the new babe
     };
 
     const updateTickets = () => {
@@ -94,4 +91,4 @@ const BoothBabe = () => {
     );
 };
 
-export default BoothBabe; // Export statement placed at the end
+export default BoothBabe;
