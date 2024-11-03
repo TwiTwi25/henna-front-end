@@ -1,92 +1,52 @@
 import React, { useState } from 'react';
 
-const BoothBabe = () => {
-    const [babes, setBabes] = useState([]);
-    const [babeName, setBabeName] = useState('');
-    const [startingTicket, setStartingTicket] = useState('');
-    const [endingTicket, setEndingTicket] = useState('');
-    const [currentBabeIndex, setCurrentBabeIndex] = useState(null); // Track the currently edited babe
+const BoothBabe = ({ babe, index, updateBabe, deleteBabe }) => {
+    const [startingTicket, setStartingTicket] = useState(0);
+    const [endingTicket, setEndingTicket] = useState(0);
 
-    const addBabe = () => {
-        if (babeName.trim() === '') {
-            alert("Please enter a name for the babe."); // Alert if name is empty
-            return;
-        }
-
-        const newBabe = { name: babeName, startingTicket: '', endingTicket: '' };
-        setBabes([...babes, newBabe]);
-        setBabeName(''); // Clear name input after adding
-        setCurrentBabeIndex(babes.length); // Set current babe index to the new babe
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        updateBabe(index, parseInt(startingTicket) || 0, parseInt(endingTicket) || 0);
+        setStartingTicket(0);
+        setEndingTicket(0);
     };
 
-    const updateTickets = () => {
-        if (currentBabeIndex !== null) {
-            const updatedBabes = [...babes];
-            updatedBabes[currentBabeIndex].startingTicket = startingTicket;
-            updatedBabes[currentBabeIndex].endingTicket = endingTicket;
-            setBabes(updatedBabes);
-            setStartingTicket(''); // Clear starting ticket input
-            setEndingTicket(''); // Clear ending ticket input
-            setCurrentBabeIndex(null); // Reset current babe index
+    const handleDelete = () => {
+        const confirmed = window.confirm(`Are you sure you want to delete ${babe.name}?`);
+        if (confirmed) {
+            deleteBabe(index);
         }
     };
 
     return (
-        <div className="booth-babe-container">
-            <div className="input-group">
-                <label>Babe Name</label>
-                <input
-                    type="text"
-                    value={babeName}
-                    onChange={(e) => setBabeName(e.target.value)}
-                    className="artist-input"
-                    placeholder="Enter Babe Name"
-                />
-            </div>
-            <button onClick={addBabe} className="add-babe-button">
-                Add Babe
-            </button>
-
-            {currentBabeIndex !== null && (
-                <div className="ticket-inputs">
-                    <div className="input-group">
-                        <label>Starting Ticket Number</label>
-                        <input
-                            type="number"
-                            value={startingTicket}
-                            onChange={(e) => setStartingTicket(e.target.value)}
-                            className="artist-input"
-                            placeholder="Enter Starting Ticket"
-                        />
-                    </div>
-                    <div className="input-group">
-                        <label>Ending Ticket Number</label>
-                        <input
-                            type="number"
-                            value={endingTicket}
-                            onChange={(e) => setEndingTicket(e.target.value)}
-                            className="artist-input"
-                            placeholder="Enter Ending Ticket"
-                        />
-                    </div>
-                    <button onClick={updateTickets} className="add-babe-button">
-                        Save Tickets
-                    </button>
+        <div className="babe">
+            <h2>{babe.name}</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <label>Starting Ticket: </label>
+                    <input
+                        type="number"
+                        value={startingTicket}
+                        onChange={(e) => setStartingTicket(e.target.value)}
+                        placeholder="Enter starting ticket"
+                        className="babe-input"
+                    />
                 </div>
-            )}
-
-            <div className="babe-list">
-                {babes.map((babe, index) => (
-                    <div key={index}>
-                        <h4>{babe.name}</h4>
-                        {babe.startingTicket && babe.endingTicket && (
-                            <p>
-                                Starting Ticket: {babe.startingTicket} - Ending Ticket: {babe.endingTicket}
-                            </p>
-                        )}
-                    </div>
-                ))}
-            </div>
+                <div className="input-group">
+                    <label>Ending Ticket: </label>
+                    <input
+                        type="number"
+                        value={endingTicket}
+                        onChange={(e) => setEndingTicket(e.target.value)}
+                        placeholder="Enter ending ticket"
+                        className="babe-input"
+                    />
+                </div>
+                <div className="artist-buttons">
+                    <button type="submit" className="submit-button">Next</button>
+                    <button type="button" onClick={handleDelete} className="delete-babe">Delete</button>
+                </div>
+            </form>
         </div>
     );
 };

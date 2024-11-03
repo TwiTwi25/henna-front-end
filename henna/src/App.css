@@ -22,13 +22,17 @@ h1 {
   text-align: center;
 }
 
-.artist-section {
+.artist-section,
+.booth-babe-container {
+  /* Add booth-babe-container to match artist-section */
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
 }
 
-.add-artist {
+.add-artist,
+.add-babe {
+  /* Add .add-babe class for booth babe section */
   display: flex;
   flex-direction: column;
   /* Stack items vertically */
@@ -38,7 +42,9 @@ h1 {
   /* Adds space above the form */
 }
 
-.add-artist input {
+.add-artist input,
+.babe-input {
+  /* Ensure babe input has the same style */
   width: 200px;
   /* Set width of the input field */
   padding: 10px;
@@ -47,7 +53,9 @@ h1 {
   font-size: 1rem;
 }
 
-.add-artist button {
+.add-artist button,
+.add-babe-button {
+  /* Ensure buttons match for both sections */
   background-color: #5500ff;
   color: white;
   border: none;
@@ -58,7 +66,9 @@ h1 {
   text-align: center;
 }
 
-.artist-buttons {
+.artist-buttons,
+.babe-buttons {
+  /* Add babe-buttons for the booth babe section */
   display: flex;
   flex-direction: column;
   /* Stack the buttons vertically */
@@ -68,49 +78,50 @@ h1 {
   /* Add space above the button container */
 }
 
-.add-artist button:hover {
+.add-artist button:hover,
+.add-babe-button:hover {
+  /* Ensure hover effects match */
   background-color: #0e12fb;
 }
 
-.artist {
+.artist,
+.babe {
+  /* Ensure babe styling matches artist */
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.artist-input {
-  /* Add class to specify styling for artist inputs */
-  width: 100%;
-  /* Full width within the input group */
-  padding: 10px;
+input {
+  width: 120px;
+  padding: 5px;
   font-size: 1rem;
 }
 
-.add-babe-button {
-  /* Add class for specific button styling */
+button {
   background-color: #5500ff;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 20px;
   font-size: 1.5rem;
   cursor: pointer;
   border-radius: 5px;
-  width: 100%;
-  /* Full width button */
-  max-width: 300px;
-  /* Match input field width */
 }
 
 button:hover {
   background-color: #0e12fb;
 }
 
-button.delete-artist {
+button.delete-artist,
+.delete-babe {
+  /* Ensure delete buttons match */
   background-color: #dc3545;
 }
 
-button.delete-artist:hover {
+button.delete-artist:hover,
+.delete-babe:hover {
+  /* Ensure hover effect matches */
   background-color: #851823;
 }
 
@@ -154,9 +165,11 @@ button.delete-artist:hover {
   padding: 10px 15px;
   /* Adjust padding for better button size */
   background-color: #007bff;
+  /* Primary tab color */
   color: white;
   border: none;
   border-radius: 5px;
+  /* Rounded corners */
   cursor: pointer;
   transition: background-color 0.3s;
 }
