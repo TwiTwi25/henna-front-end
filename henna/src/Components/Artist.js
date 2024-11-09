@@ -21,7 +21,7 @@ const Artist = ({ artist, index, updateArtist, deleteArtist }) => {
     };
 
     return (
-        <div className="artist">
+        <div className="artist-section">
             <h2>{artist.name}</h2>
 
             {/* Form for ticket and tip submission */}
@@ -47,7 +47,7 @@ const Artist = ({ artist, index, updateArtist, deleteArtist }) => {
 
                 {/* Submit (Next) Button */}
                 <div className="artist-buttons">
-                    <button type="submit" className="submit-button">Next</button>
+                    <button type="submit" className="submit-button">Submit</button>
                     <button type="button" onClick={handleDelete} className="delete-button">Delete</button>
                 </div>
             </form>

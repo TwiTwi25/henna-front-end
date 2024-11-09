@@ -19,7 +19,7 @@ const AddBabeButton = ({ addBabe }) => {
                 type="text"
                 value={babeName}
                 onChange={(e) => setBabeName(e.target.value)}
-                placeholder="Enter booth babe's name"
+                placeholder="Enter babe's name"
             />
             {/* Button below the input */}
             <button onClick={handleAddBabe}>Add Booth Babe</button>

@@ -24,38 +24,39 @@ h1 {
 
 .artist-section,
 .booth-babe-container {
-  /* Add booth-babe-container to match artist-section */
+  /* Both sections share the same width and centering */
   max-width: 600px;
+  /* Limit the width of both sections */
   margin: 0 auto;
+  /* Center the container */
   text-align: center;
+  align-items: center;
+  /* Center all child elements horizontally */
+
 }
 
 .add-artist,
 .add-babe {
-  /* Add .add-babe class for booth babe section */
   display: flex;
   flex-direction: column;
-  /* Stack items vertically */
   align-items: center;
-  /* Center the input and button horizontally */
   margin-top: 20px;
-  /* Adds space above the form */
 }
 
 .add-artist input,
-.babe-input {
-  /* Ensure babe input has the same style */
+.add-babe input,
+/* Make sure this targets both */
+.add-artist button,
+.add-babe button {
+  /* Ensure this targets both button types */
   width: 200px;
-  /* Set width of the input field */
   padding: 10px;
   margin-bottom: 15px;
-  /* Add space between the input and button */
   font-size: 1rem;
 }
 
 .add-artist button,
-.add-babe-button {
-  /* Ensure buttons match for both sections */
+.add-babe button {
   background-color: #5500ff;
   color: white;
   border: none;
@@ -66,22 +67,15 @@ h1 {
   text-align: center;
 }
 
-.artist-buttons,
-.babe-buttons {
-  /* Add babe-buttons for the booth babe section */
-  display: flex;
-  flex-direction: column;
-  /* Stack the buttons vertically */
-  align-items: center;
-  /* Center the buttons horizontally */
-  margin-top: 10px;
-  /* Add space above the button container */
+.add-artist button:hover,
+.add-babe button:hover {
+  background-color: #0e12fb;
 }
 
-.add-artist button:hover,
-.add-babe-button:hover {
-  /* Ensure hover effects match */
-  background-color: #0e12fb;
+.add-artist button:disabled,
+.add-babe button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 
 .artist,
@@ -91,6 +85,12 @@ h1 {
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #f8f8f8;
+  /* Light background for clarity */
+  max-width: 600px;
+  /* Limit the width */
+  margin: 0 auto;
+  /* Center the container */
 }
 
 input {
@@ -177,4 +177,20 @@ button.delete-artist:hover,
 .tab-container button.active {
   background-color: #0056b3;
   /* Darker color for active tab */
+}
+
+.submit-button {
+  width: 200px;
+  /* Or 100% for full-width button */
+  padding: 15px;
+  /* Increase padding to make the button look wider */
+  font-size: 16px;
+  /* Adjust font size for better readability */
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* Centers the button horizontally */
 }
