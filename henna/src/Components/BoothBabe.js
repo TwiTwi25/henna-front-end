@@ -1,127 +1,140 @@
 import React, { useState, useEffect } from 'react';
 
 const BoothBabe = ({ babe, index, updateBabe, deleteBabe }) => {
-    const [startingTicket, setStartingTicket] = useState('');
-    const [endingTicket, setEndingTicket] = useState('');
-    const [isStartingLocked, setIsStartingLocked] = useState(false);
-    const [isEndingLocked, setIsEndingLocked] = useState(false);
+    const [ticketRanges, setTicketRanges] = useState([{ startingTicket: '', endingTicket: '', isStartingLocked: false, isEndingLocked: false }]);
 
-    // Function to handle limiting input to 10 digits
-    const handleInputChange = (value, setInput, setLocked) => {
+    // Function to handle input changes
+    const handleInputChange = (value, rangeIndex, field) => {
+        const updatedRanges = [...ticketRanges];
         if (value.length <= 10 && /^\d*$/.test(value)) { // Allow only digits and max 10 numbers
-            setInput(value);
+            updatedRanges[rangeIndex][field] = value;
             if (value.length === 10) {
-                setLocked(true); // Lock input after 10 digits
+                updatedRanges[rangeIndex][field === 'startingTicket' ? 'isStartingLocked' : 'isEndingLocked'] = true; // Lock if 10 digits
             }
+            setTicketRanges(updatedRanges);
         }
     };
 
-    const handleStartingChange = (e) => {
+    const handleStartingChange = (e, rangeIndex) => {
         const value = e.target.value;
-        if (!isStartingLocked) {
-            handleInputChange(value, setStartingTicket, setIsStartingLocked);
+        const updatedRanges = [...ticketRanges];
+        if (!updatedRanges[rangeIndex].isStartingLocked) {
+            handleInputChange(value, rangeIndex, 'startingTicket');
         }
     };
 
-    const handleEndingChange = (e) => {
+    const handleEndingChange = (e, rangeIndex) => {
         const value = e.target.value;
-        if (!isEndingLocked) {
-            handleInputChange(value, setEndingTicket, setIsEndingLocked);
+        const updatedRanges = [...ticketRanges];
+        if (!updatedRanges[rangeIndex].isEndingLocked) {
+            handleInputChange(value, rangeIndex, 'endingTicket');
         }
     };
 
-    const handleStartingSubmit = (e) => {
-        e.preventDefault();
-        updateBabe(index, parseInt(startingTicket) || 0, endingTicket ? parseInt(endingTicket) : 0);
-        setIsStartingLocked(true); // Lock the starting ticket after submission
+    // Add a new ticket range for when they take a break and return
+    const addNewTicketRange = () => {
+        setTicketRanges([...ticketRanges, { startingTicket: '', endingTicket: '', isStartingLocked: false, isEndingLocked: false }]);
     };
 
-    const handleEndingSubmit = (e) => {
+    const handleStartingSubmit = (e, rangeIndex) => {
         e.preventDefault();
-        updateBabe(index, startingTicket ? parseInt(startingTicket) : 0, parseInt(endingTicket) || 0);
-        setIsEndingLocked(true); // Lock the ending ticket after submission
+        const range = ticketRanges[rangeIndex];
+        // Update the babe with the starting and ending tickets for this range
+        updateBabe(index, parseInt(range.startingTicket) || 0, parseInt(range.endingTicket) || 0, rangeIndex);
+
+        // Lock the inputs after submission
+        const updatedRanges = [...ticketRanges];
+        updatedRanges[rangeIndex].isStartingLocked = true;
+        setTicketRanges(updatedRanges); // Lock the starting ticket input
+    };
+
+    const handleEndingSubmit = (e, rangeIndex) => {
+        e.preventDefault();
+        const range = ticketRanges[rangeIndex];
+        // Update the babe with the starting and ending tickets for this range
+        updateBabe(index, parseInt(range.startingTicket) || 0, parseInt(range.endingTicket) || 0, rangeIndex);
+
+        // Lock the inputs after submission
+        const updatedRanges = [...ticketRanges];
+        updatedRanges[rangeIndex].isEndingLocked = true;
+        setTicketRanges(updatedRanges); // Lock the ending ticket input
     };
 
     const handleDelete = () => {
         const confirmed = window.confirm(`Are you sure you want to delete ${babe.name}?`);
         if (confirmed) {
+            // Delete from state
             deleteBabe(index);
+
+            // Remove from localStorage
+            localStorage.removeItem(`babe_${index}`);
         }
     };
 
-    // Load locked states from localStorage when the component mounts
+    // Load ticket ranges from localStorage when the component mounts
     useEffect(() => {
-        const savedStartingTicket = localStorage.getItem(`startingTicket_${babe.name}`);
-        const savedEndingTicket = localStorage.getItem(`endingTicket_${babe.name}`);
-        const savedStartingLocked = localStorage.getItem(`isStartingLocked_${babe.name}`);
-        const savedEndingLocked = localStorage.getItem(`isEndingLocked_${babe.name}`);
-
-        if (savedStartingTicket) setStartingTicket(savedStartingTicket);
-        if (savedEndingTicket) setEndingTicket(savedEndingTicket);
-        if (savedStartingLocked === 'true') setIsStartingLocked(true);
-        if (savedEndingLocked === 'true') setIsEndingLocked(true);
+        const savedRanges = JSON.parse(localStorage.getItem(`ticketRanges_${babe.name}`));
+        if (savedRanges) {
+            setTicketRanges(savedRanges);
+        }
     }, [babe.name]);
 
-    // Save states to localStorage whenever the tickets or locked states change
+    // Save ticket ranges to localStorage whenever they change
     useEffect(() => {
-        localStorage.setItem(`startingTicket_${babe.name}`, startingTicket);
-        localStorage.setItem(`endingTicket_${babe.name}`, endingTicket);
-        localStorage.setItem(`isStartingLocked_${babe.name}`, isStartingLocked);
-        localStorage.setItem(`isEndingLocked_${babe.name}`, isEndingLocked);
-    }, [startingTicket, endingTicket, isStartingLocked, isEndingLocked, babe.name]);
+        localStorage.setItem(`ticketRanges_${babe.name}`, JSON.stringify(ticketRanges));
+    }, [ticketRanges, babe.name]);
 
     return (
         <div className="booth-babe-container">
             <h2>{babe.name}</h2>
-            <form>
-                <div className="input-group">
-                    <label>Starting Ticket: </label>
-                    <input
-                        type="text"
-                        value={startingTicket}
-                        onChange={handleStartingChange}
-                        placeholder="Enter starting ticket"
-                        className="babe-input"
-                        disabled={isStartingLocked} // Disable if locked
-                    />
-                    <div className="button-container">
-                        <button
-                            type="submit"
-                            onClick={handleStartingSubmit}
-                            disabled={isStartingLocked || startingTicket === ''}
-                            className="submit-button"
-                        >
-                            Submit Starting Ticket
-                        </button>
+            {ticketRanges.map((range, rangeIndex) => (
+                <form key={rangeIndex}>
+                    <div className="input-group">
+                        <label>Starting Ticket (Range {rangeIndex + 1}): </label>
+                        <input
+                            type="text"
+                            value={range.startingTicket}
+                            onChange={(e) => handleStartingChange(e, rangeIndex)}
+                            placeholder="Enter starting ticket"
+                            className="babe-input"
+                            disabled={range.isStartingLocked} // Lock input if the field is locked
+                        />
+                        {/* Conditionally render the submit button */}
+                        {!range.isStartingLocked && (
+                            <button type="submit" onClick={(e) => handleStartingSubmit(e, rangeIndex)} className="submit-button">
+                                Submit Starting Ticket
+                            </button>
+                        )}
                     </div>
-                </div>
 
-                <div className="input-group">
-                    <label>Ending Ticket: </label>
-                    <input
-                        type="text"
-                        value={endingTicket}
-                        onChange={handleEndingChange}
-                        placeholder="Enter ending ticket"
-                        className="babe-input"
-                        disabled={isEndingLocked} // Disable if locked
-                    />
-                    <div className="button-container">
-                        <button
-                            type="submit"
-                            onClick={handleEndingSubmit}
-                            disabled={isEndingLocked || endingTicket === ''}
-                            className="submit-button"
-                        >
-                            Submit Ending Ticket
-                        </button>
+                    <div className="input-group">
+                        <label>Ending Ticket (Range {rangeIndex + 1}): </label>
+                        <input
+                            type="text"
+                            value={range.endingTicket}
+                            onChange={(e) => handleEndingChange(e, rangeIndex)}
+                            placeholder="Enter ending ticket"
+                            className="babe-input"
+                            disabled={range.isEndingLocked} // Lock input if the field is locked
+                        />
+                        {/* Conditionally render the submit button */}
+                        {!range.isEndingLocked && (
+                            <button type="submit" onClick={(e) => handleEndingSubmit(e, rangeIndex)} className="submit-button">
+                                Submit Ending Ticket
+                            </button>
+                        )}
                     </div>
-                </div>
+                </form>
+            ))}
 
-                <div className="artist-buttons">
-                    <button type="button" onClick={handleDelete} className="delete-babe">Delete</button>
-                </div>
-            </form>
+            <div className="button-container">
+                {/* Make the "Add New Ticket Range" button smaller */}
+                <button type="button" onClick={addNewTicketRange} className="add-range-button">
+                    Add New Ticket Range
+                </button>
+            </div>
+
+            <button type="button" onClick={handleDelete} className="delete-babe">Delete</button>
         </div>
     );
 };

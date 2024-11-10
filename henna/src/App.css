@@ -1,40 +1,44 @@
+/* General body and html reset */
 body,
 html {
   height: 100%;
   margin: 0;
+  font-family: Arial, sans-serif;
+  /* Added font family for consistency */
 }
 
+/* Banner image container styling */
 header.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 150px;
+  /* Reduced height for smaller banner */
   width: 100%;
   background-image: url('images/space.jpg');
-  background-size: auto;
+  background-size: contain;
+  /* Ensures image covers the container */
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/* Banner text styling */
 h1 {
   color: white;
   font-size: 20px;
   text-align: center;
 }
 
+/* Container styles for artist and booth babe sections */
 .artist-section,
 .booth-babe-container {
-  /* Both sections share the same width and centering */
   max-width: 600px;
-  /* Limit the width of both sections */
   margin: 0 auto;
-  /* Center the container */
   text-align: center;
   align-items: center;
-  /* Center all child elements horizontally */
-
 }
 
+/* Form container for both artist and booth babe */
 .add-artist,
 .add-babe {
   display: flex;
@@ -43,62 +47,67 @@ h1 {
   margin-top: 20px;
 }
 
+/* Input fields styling for both artist and booth babe */
 .add-artist input,
-.add-babe input,
-/* Make sure this targets both */
-.add-artist button,
-.add-babe button {
-  /* Ensure this targets both button types */
+.add-babe input {
   width: 200px;
   padding: 10px;
   margin-bottom: 15px;
   font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
+/* Buttons for submitting starting/ending ticket and adding new range */
 .add-artist button,
 .add-babe button {
+  width: 200px;
+  padding: 10px;
+  font-size: 1.2rem;
   background-color: #5500ff;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
   text-align: center;
 }
 
+/* Hover effect for buttons */
 .add-artist button:hover,
 .add-babe button:hover {
   background-color: #0e12fb;
 }
 
+/* Disabled button state */
 .add-artist button:disabled,
 .add-babe button:disabled {
   background-color: #ddd;
   cursor: not-allowed;
 }
 
+/* Style for ticket range form */
 .artist,
 .babe {
-  /* Ensure babe styling matches artist */
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f8f8f8;
-  /* Light background for clarity */
   max-width: 600px;
-  /* Limit the width */
   margin: 0 auto;
-  /* Center the container */
 }
 
+/* Input fields within ticket range forms */
 input {
-  width: 120px;
-  padding: 5px;
+  width: 200px;
+  padding: 10px;
   font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
+/* General button style */
 button {
   background-color: #5500ff;
   color: white;
@@ -109,22 +118,23 @@ button {
   border-radius: 5px;
 }
 
+/* Button hover effect */
 button:hover {
   background-color: #0e12fb;
 }
 
+/* Styling for delete buttons */
 button.delete-artist,
 .delete-babe {
-  /* Ensure delete buttons match */
   background-color: #dc3545;
 }
 
 button.delete-artist:hover,
 .delete-babe:hover {
-  /* Ensure hover effect matches */
   background-color: #851823;
 }
 
+/* Submit button styles for consistent design */
 .submit-button,
 .delete-button {
   background-color: #5500ff;
@@ -135,9 +145,7 @@ button.delete-artist:hover,
   cursor: pointer;
   border-radius: 5px;
   width: 100px;
-  /* Fixed width for consistency */
   margin: 10px 0;
-  /* Add space between the buttons */
 }
 
 .submit-button:hover {
@@ -152,45 +160,73 @@ button.delete-artist:hover,
   background-color: #c82333;
 }
 
+/* Tab container styling */
 .tab-container {
   display: flex;
   justify-content: center;
-  /* Center the items horizontally */
   margin: 20px 0;
 }
 
 .tab-container button {
   margin: 0 10px;
-  /* Horizontal margin between buttons */
   padding: 10px 15px;
-  /* Adjust padding for better button size */
   background-color: #007bff;
-  /* Primary tab color */
   color: white;
   border: none;
   border-radius: 5px;
-  /* Rounded corners */
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .tab-container button.active {
   background-color: #0056b3;
-  /* Darker color for active tab */
 }
 
-.submit-button {
-  width: 200px;
-  /* Or 100% for full-width button */
-  padding: 15px;
-  /* Increase padding to make the button look wider */
-  font-size: 16px;
-  /* Adjust font size for better readability */
-}
-
+/* Button container styling */
 .button-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* Centers the button horizontally */
+}
+
+/* Make Submit buttons look wider */
+.submit-button {
+  width: 200px;
+  padding: 15px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+/* Make the "Add New Ticket Range" button smaller */
+.add-range-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.add-range-button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for input groups to ensure spacing between fields */
+.input-group {
+  margin-bottom: 20px;
+}
+
+/* Delete button styling */
+.delete-babe {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-babe:hover {
+  background-color: #c82333;
 }
