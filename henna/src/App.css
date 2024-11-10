@@ -207,6 +207,8 @@ button.delete-artist:hover,
   cursor: pointer;
   border-radius: 5px;
   margin-top: 15px;
+  margin-bottom: 20px;
+  /* Added margin below the "Add New Ticket Range" button */
 }
 
 .add-range-button:hover {
@@ -228,5 +230,44 @@ button.delete-artist:hover,
 }
 
 .delete-babe:hover {
+  background-color: #c82333;
+}
+
+/* Ensure the container for buttons is a flex container with column direction */
+.artist-buttons {
+  display: flex;
+  flex-direction: column;
+  /* Stack buttons vertically */
+  align-items: center;
+  /* Center buttons horizontally */
+  gap: 10px;
+  /* Space between the buttons */
+}
+
+/* Buttons styling for submit and delete buttons */
+.submit-button,
+.delete-button {
+  width: 200px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: #5500ff;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #0e12fb;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
   background-color: #c82333;
 }

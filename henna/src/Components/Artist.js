@@ -45,7 +45,7 @@ const Artist = ({ artist, index, updateArtist, deleteArtist }) => {
                 />
                 <p>Total Tips: ${artist.tips.toFixed(2)}</p> {/* Display tips with 2 decimal places */}
 
-                {/* Submit (Next) Button */}
+                {/* Submit and Delete buttons */}
                 <div className="artist-buttons">
                     <button type="submit" className="submit-button">Submit</button>
                     <button type="button" onClick={handleDelete} className="delete-button">Delete</button>

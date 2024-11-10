@@ -34,6 +34,8 @@ function App() {
     if (artists.length > 0) {
       console.log("Saving to localStorage:", artists);
       localStorage.setItem('artists', JSON.stringify(artists));
+    } else {
+      localStorage.removeItem('artists');
     }
   }, [artists]);
 
@@ -42,6 +44,8 @@ function App() {
     if (boothBabes.length > 0) {
       console.log("Saving booth babes to localStorage:", boothBabes);
       localStorage.setItem('boothBabes', JSON.stringify(boothBabes));
+    } else {
+      localStorage.removeItem('boothBabes');
     }
   }, [boothBabes]);
 
